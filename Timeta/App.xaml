@@ -1,0 +1,10 @@
+﻿<Application x:Class="Timeta.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Timeta"
+             xmlns:service="clr-namespace:Timeta.Domain.Services;assembly=Timeta.Domain"
+             Startup="AppStartup">
+    <Application.Resources>
+        <service:ThreadTimerService x:Key="TimerService" />
+    </Application.Resources>
+</Application>

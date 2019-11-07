@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.138
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timeta", "Timeta\Timeta.csproj", "{8AB0C828-4277-45C1-A744-AA454317A7ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timeta", "Timeta\Timeta.csproj", "{8AB0C828-4277-45C1-A744-AA454317A7ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timeta.Domain", "Timeta.Domain\Timeta.Domain.csproj", "{1374FE49-D752-43C4-8258-D57936C49D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timeta.Domain", "Timeta.Domain\Timeta.Domain.csproj", "{1374FE49-D752-43C4-8258-D57936C49D11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timeta.Tests", "Timeta.Tests\Timeta.Tests.csproj", "{A5D99A48-7A7A-47BF-9B22-BA0F66A8DC01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timeta.Tests", "Timeta.Tests\Timeta.Tests.csproj", "{A5D99A48-7A7A-47BF-9B22-BA0F66A8DC01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{2B9F4117-1C31-40DB-9931-138A3B30E737}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

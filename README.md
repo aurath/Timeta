@@ -5,8 +5,15 @@ Kymeta WPF coding challenge.
 ## Purpose
 Timeta is meant to demonstrate two primary methodologies of interacting with a background service from a WPF UI. In addition it contains an example of a simple WPF control. It implements the MVVM pattern by keeping the ViewModel and other domain logic completely separate from the view layer. In fact the `Timeta.Domain` assembly has no reference to either the the view assembly, nor to any of the WPF assemblies. This approach aids in clean separation between view and logic layers. And additional benefit is that the ViewModel layer could feasibly be reused with another UI technology.
 
+## ThreadTimerService
+The service implementation starts a background thread that loops endlessly, waiting 1000ms between each loop. Access to the thread data is controlled using the C# `lock` statement to prevent race conditions.
+
+### Alternatives to Using `Thread`
+There are few reasons that a WPF app should ever interact with a thread directly. The easiest implementation of this service would make use of a `DispatcherTimer` and prevent concurrency issues through the use of Dispatcher.Invoke to schedule UI updates on the UI thread.
+
+
 ## Approaches
-Let's examine the structure of each approach, along their pros and cons.
+The app has a UI section for each method. Note that both are interacting with the same instance of the timer service. Let's examine the structure of each approach, along their pros and cons.
 
 ### ViewModel RelayCommand Binding
 In this pattern, we use a ViewModel to control the state of the View, as well as mediate its interactions with the rest of the application. 
@@ -51,3 +58,4 @@ This basic control also uses `RoutedCommand`s to allow the control template to i
 As this was a short coding project, I didn't have time to implement many of the techniques I would use in a production application. 
 - Implementing `INotifyDataErrorInfo` in a base class can let ViewModels use `ValidationAttribute`s to validate their public properties, as well as provide error messaging to view layer. Instead I derived from `ValidationRule` to create validation logic, and manually added a rule instance to each binding that needed validation.
 - Keeping your service in a seperate assembly without reference to WPF assemblies means you have to create `CommandBinding`s in application startup code. The right way to do this is create an interface for your services to derive from that provides a collection of adapter objects that can easily be transformed into command bindings. This way each service is responsible for defining it's command bindings, and the application can iterate over a list when constructing them. Instead I used an ugly little kludge in the app startup code.
+

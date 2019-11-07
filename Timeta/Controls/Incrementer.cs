@@ -27,9 +27,19 @@ namespace Timeta.Controls
             set { SetValue(CurrentValueProperty, value); }
         }
 
+        public void IncrementBy(int addition)
+        {
+            CurrentValue += addition;
+        }
+
+        public void SetTo(int value)
+        {
+            CurrentValue = value;
+        }
+
         public static readonly DependencyProperty CurrentValueProperty =
             DependencyProperty.Register("CurrentValue", typeof(int), typeof(Incrementer), 
-                new FrameworkPropertyMetadata(0));
+                new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public static readonly RoutedCommand Increment = new RoutedCommand(nameof(Increment), typeof(Incrementer));
 
@@ -37,22 +47,24 @@ namespace Timeta.Controls
 
         private void ExecutedIncrement(object sender, ExecutedRoutedEventArgs args)
         {
-            CurrentValue += args?.Parameter switch
+            var addition = args?.Parameter switch
             {
                 int val => val,
                 string raw when int.TryParse(raw, out int val) => val,
                 _ => 1
             };
+            IncrementBy(addition);
         }
 
         private void ExecutedSet(object sender, ExecutedRoutedEventArgs args)
         {
-            CurrentValue = args.Parameter switch
+            var newVal = args.Parameter switch
             {
                 int val => val,
                 string raw when int.TryParse(raw, out int val) => val,
                 _ => throw new ArgumentException("Parameter must be int or string.")
             };
+            SetTo(newVal);
         }
     }
 }

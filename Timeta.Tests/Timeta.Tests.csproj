@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Timeta.Domain\Timeta.Domain.csproj" />
+    <ProjectReference Include="..\Timeta\Timeta.csproj" />
   </ItemGroup>
 
 </Project>
